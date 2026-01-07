@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My JSON Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <div>
+          <h1 class="site-title">MY BLOG</h1>
+          <p class="site-subtitle">Thoughts, notes, and experiments.</p>
+        </div>
+        <a href="admin.html" style="font-size:0.8rem;color:var(--muted);">Admin</a>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <div class="site-main-inner">
+        <section class="hero">
+          <h2 class="hero-title">Latest writing</h2>
+          <p class="hero-subtitle">Short, focused posts. No clutter.</p>
+        </section>
+
+        <p class="section-label">Recent posts</p>
+        <section id="posts" class="posts-list"></section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/blog.js"></script>
+</body>
+</html>
