@@ -2,198 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Blog Admin</title>
+  <title>Admin • My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .admin-shell {
-      padding: 1.25rem;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .admin-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 1.1rem 1.1rem 1.3rem;
-      backdrop-filter: blur(18px);
-    }
-    .admin-title {
-      margin: 0 0 0.4rem;
-      font-size: 1.1rem;
-    }
-    .admin-subtitle {
-      margin: 0 0 1rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .field {
-      margin-bottom: 0.9rem;
-    }
-    .field label {
-      display: block;
-      font-size: 0.8rem;
-      margin-bottom: 0.25rem;
-      color: var(--muted);
-    }
-    .field input[type="text"],
-    .field input[type="password"],
-    .field textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 0.55rem 0.7rem;
-      background: rgba(15, 23, 42, 0.9);
-      color: #e5e7eb;
-      font-family: inherit;
-      font-size: 0.9rem;
-    }
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem;
-      margin-bottom: 0.4rem;
-    }
-    .toolbar button {
-      border: none;
-      background: rgba(15, 23, 42, 0.9);
-      color: #e5e7eb;
-      padding: 0.3rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-    }
-    .toolbar button.active {
-      background: var(--accent-soft);
-    }
-    .editor-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .editor-pane {
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
-      padding: 0.5rem;
-      min-height: 180px;
-    }
-    .editor-pane textarea {
-      border: none;
-      background: transparent;
-      width: 100%;
-      height: 100%;
-      resize: vertical;
-      color: #e5e7eb;
-      font-family: inherit;
-      font-size: 0.9rem;
-    }
-    .preview-pane {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #e5e7f5;
-      max-height: 260px;
-      overflow: auto;
-    }
-    .preview-pane h2,
-    .preview-pane h3 {
-      font-size: 0.95rem;
-      margin-top: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-    .preview-pane p {
-      margin: 0 0 0.6rem;
-    }
-    .actions {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .actions button {
-      border: none;
-      border-radius: 999px;
-      padding: 0.6rem 1.2rem;
-      background: linear-gradient(135deg, #38bdf8, #22c55e);
-      color: #020617;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .status {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .login-only {
-      display: none;
-    }
-    .login-visible .login-only {
-      display: block;
-    }
-    .login-visible .editor-only {
-      display: none;
-    }
-    .editor-visible .login-only {
-      display: none;
-    }
-    .editor-visible .editor-only {
-      display: block;
-    }
-  </style>
 </head>
-<body>
+
+<body class="login-visible">
   <div class="admin-shell">
+
+    <!-- LOGIN -->
     <div class="admin-card login-only">
-      <h1 class="admin-title">Admin login</h1>
-      <p class="admin-subtitle">Enter your password to manage posts.</p>
+      <h1 class="admin-title">Admin Login</h1>
+      <p class="admin-subtitle">Enter your password.</p>
+
       <div class="field">
-        <label for="password">Password</label>
-        <input id="password" type="password" autocomplete="current-password" />
+        <label>Password</label>
+        <input id="password" type="password" />
       </div>
+
       <div class="actions">
         <button id="login">Log in</button>
         <div class="status" id="login-status"></div>
       </div>
     </div>
 
+    <!-- EDITOR -->
     <div class="admin-card editor-only">
-      <h1 class="admin-title">New post</h1>
-      <p class="admin-subtitle">Write in Markdown. Preview updates as you type.</p>
+      <h1 class="admin-title">New Post</h1>
+      <p class="admin-subtitle">Write in Markdown. Preview updates live.</p>
 
       <div class="field">
-        <label for="title">Title</label>
+        <label>Title</label>
         <input id="title" type="text" />
       </div>
 
       <div class="field">
-        <label for="author">Author</label>
+        <label>Author</label>
         <input id="author" type="text" />
       </div>
 
       <div class="field">
-        <label for="excerpt">Excerpt</label>
+        <label>Excerpt</label>
         <textarea id="excerpt" rows="2"></textarea>
       </div>
 
       <div class="field">
-        <label>Thumbnail image</label>
+        <label>Thumbnail</label>
         <input id="thumb" type="file" accept="image/*" />
       </div>
 
       <div class="field">
-        <label>Hero image (optional)</label>
+        <label>Hero Image (optional)</label>
         <input id="hero" type="file" accept="image/*" />
       </div>
 
       <div class="field">
-        <label for="content">Content</label>
+        <label>Content</label>
+
         <div class="toolbar">
-          <button type="button" data-wrap="**">Bold</button>
-          <button type="button" data-wrap="*">Italic</button>
-          <button type="button" data-prefix="## ">H2</button>
-          <button type="button" data-prefix="- ">List</button>
-          <button type="button" data-insert="![]()">Image</button>
-          <button type="button" id="toggle-preview">Preview</button>
+          <button data-wrap="**">Bold</button>
+          <button data-wrap="*">Italic</button>
+          <button data-prefix="## ">H2</button>
+          <button data-prefix="- ">List</button>
+          <button data-insert="![]()">Image</button>
+          <button id="toggle-preview">Preview</button>
         </div>
+
         <div class="editor-row">
           <div class="editor-pane">
             <textarea id="content" rows="10"></textarea>
@@ -207,6 +81,7 @@
         <div class="status" id="status"></div>
       </div>
     </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
